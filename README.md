@@ -22,13 +22,16 @@ Either file version can be integrated within AWS, depending upon developer prefe
 
 # Integration
 
+The codec integrates with AWS IoT Core for LoRaWAN through MQTT topics, Lambda functions, and routing rules. 
 Codec support is added on a per [IoT Core for LoRaWAN Destination][Add destinations to AWS IoT Core for LoRaWAN] basis.
 
-The Destination is configured to route RS26x device uplink messages to an MQTT topic. Messages published here contain metadata associated with the uplink message, and the uplink message payload in base-64 format. This topic can be considered the 'root' MQTT topic, with decoded uplink content being derived from here. During [addition of LoRaWAN devices to IoT Core for LoRaWAN][Add device to AWS IoT Core for LoRaWAN], the Destination to be used by the device is included as part of the configuration defined for the device.
+**Uplink flow**
 
-To decode uplink messages, a [Rule][Create rules to process LoRaWAN device messages] is defined to invoke the Uplink Decoder code via the AWS Lambda engine. Output from the Uplink Decoder is then published to an additional MQTT topic.
+When an RS26x device transmits an uplink, the assigned Destination routes the message to a root MQTT topic. This topic carries the raw payload in base-64 along with metadata. A [Rule][Create rules to process LoRaWAN device messages] then triggers the Uplink Decoder Lambda, which converts the payload into decoded JSON and republishes it to a dedicated decoded topic. The Destination is defined when the [device is added to IoT Core for LoRaWAN][Add device to AWS IoT Core for LoRaWAN].
 
-To encode downlink messages, a further MQTT topic, specific for this purpose, is used. Upon publishing of messages to this topic, a Rule is executed that invokes the Downlink Encoder code, via the Lambda engine. The Lambda forwards the encoded message to the IoT Core for LoRaWAN downlink queue then to the RS26x device upon the next uplink. Responses to the downlinks can then be inspected in the Uplink Message topic.
+**Downlink flow**
+
+For downlink messages, applications publish requests to a dedicated downlink topic. A Rule invokes the Downlink Encoder Lambda, which encodes the request and places it into the IoT Core for LoRaWAN downlink queue. The message is delivered to the RS26x device during its next uplink receive window. Any responses—whether acknowledgments or application data—are published to the uplink message topic..
 
 Associated entities are shown below.
 
