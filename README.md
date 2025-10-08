@@ -269,7 +269,7 @@ Text within and including chevrons is intended for replacement. Messages being p
 
 'Next' can then be clicked.
 
-A single Rule Action is added as shown below.
+A single Rule Action is added as shown below. 
 
 ![Setting Encoder Rule Action](images/036_setting_encoder_rule_action.png)
 
