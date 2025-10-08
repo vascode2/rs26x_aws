@@ -99,7 +99,7 @@ Following entering a suitable name for the Service Profile, desired Adaptive Dat
 
 ![Configuring Service Profile](images/008_configuring_service_profile.png)
 
-Maximum and minimum allowable values are dependent upon the region of the device being associated with the Service Profile, as follows.
+Maximum and minimum allowable values are dependent upon the region of the device being associated with the Service Profile, as follows. 
 
 | RS26x model |  DrMin | DrMax | TxPowerIndexMin | TxPowerIndexMax |
 |:-----------:|:------:|:-----:|:---------------:|:---------------:|
