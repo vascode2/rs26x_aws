@@ -31,7 +31,7 @@ When an RS26x device transmits an uplink, the assigned Destination routes the me
 
 **Downlink flow**
 
-For downlink messages, applications publish requests to a dedicated downlink topic. A Rule invokes the Downlink Encoder Lambda, which encodes the request and places it into the IoT Core for LoRaWAN downlink queue. The message is delivered to the RS26x device during its next uplink receive window. Any responses—whether acknowledgments or application data—are published to the uplink message topic..
+For downlink messages, applications publish requests to a dedicated downlink topic. A Rule invokes the Downlink Encoder Lambda, which encodes the request and places it into the IoT Core for LoRaWAN downlink queue. The message is delivered to the RS26x device during its next uplink receive window. Any responses—whether acknowledgments or application data—are published to the uplink message topic.
 
 Associated entities are shown below.
 
